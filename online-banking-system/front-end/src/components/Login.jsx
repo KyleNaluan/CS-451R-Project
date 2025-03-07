@@ -7,7 +7,7 @@ function Login() {
   return (
     <div className = "login-page">
       {/* Header */}
-      <div className="w-100 h-60px position-absolute top-0 start-0" style={{ backgroundColor: "#006649", height: "100px" }}></div>
+      <div className="w-100 position-absolute top-0 start-0" style={{ backgroundColor: "#006649", height: "100px" }}></div>
       
       {/* Centered login form */}
       <Container className="d-flex justify-content-center align-items-center flex-grow-1">
