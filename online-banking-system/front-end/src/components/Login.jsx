@@ -40,8 +40,10 @@ function Login() {
 
   return (
     <div className="login-page d-flex flex-column vh-100">
+      {/* Green Header */}
       <div className="w-100 position-absolute top-0 start-0" style={{ backgroundColor: "#006649", height: "100px" }}></div>
       <Container className="d-flex justify-content-center align-items-center flex-grow-1">
+        {/* Login Form */}
         <Row className="shadow-lg rounded overflow-hidden" style={{ width: "750px" }}>
           <Col className="p-4 bg-white">
             <h2 className="fw-bold">Welcome Back!</h2>

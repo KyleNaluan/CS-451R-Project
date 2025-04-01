@@ -21,22 +21,25 @@ function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-  
+
     try {
+      const { confirmPassword, ...dataToSend } = formData;
+
       const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
-  
+
+
       const result = await response.text();
       alert(result);
-  
+
       if (response.ok) {
         navigate("/login");
       }
@@ -45,7 +48,7 @@ function Registration() {
       alert("Registration error" + err.message);
     }
   };
-  
+
 
   return (
     <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -92,7 +95,7 @@ function Registration() {
           </Form>
           <hr />
           <p className="text-center text-muted">
-            <strong>Already have an account?</strong> 
+            <strong>Already have an account?</strong>
             <Button variant="link" onClick={() => navigate("/login")}>Login</Button>
           </p>
         </Col>
