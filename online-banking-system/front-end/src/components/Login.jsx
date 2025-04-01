@@ -78,8 +78,6 @@ function Login() {
               <Button variant="link" onClick={() => navigate("/register")}>Sign up</Button>
             </p>
           </Col>
-
-          {/* ✅ Right Side - Green Background */}
           <Col className="rounded-end d-none d-md-block" style={{ backgroundColor: "#005f43", width: "50%" }}></Col>
         </Row>
       </Container>
