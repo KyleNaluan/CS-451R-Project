@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import { Button, Form, Container, Row, Col, Alert } from "react-bootstrap";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,12 +11,16 @@ function Login() {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
+
     try {
       const response = await fetch("http://localhost:8080/auth/login", {
         method: "POST",
@@ -29,12 +33,12 @@ function Login() {
         console.log("Login success:", user);
         navigate("/dashboard");
       } else {
-        const message = await response.text();
-        alert("Login failed: " + message);
+        //const message = await response.text();
+        setErrorMessage("Login failed: Invalid Credentials!");
       }
     } catch (err) {
       console.error("Login error:", err);
-      alert("Login request failed.");
+      setErrorMessage("Login request failed.");
     }
   };
 
@@ -48,6 +52,11 @@ function Login() {
           <Col className="p-4 bg-white">
             <h2 className="fw-bold">Welcome Back!</h2>
             <p className="text-muted">Enter login details below</p>
+            {errorMessage && (
+              <Alert key="warning" variant="warning">
+                {errorMessage}
+              </Alert>
+            )}
             <Form onSubmit={handleLogin}>
               <Form.Group className="mb-3 text-start">
                 <Form.Label>Email or Username</Form.Label>
