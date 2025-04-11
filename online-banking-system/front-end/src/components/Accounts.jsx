@@ -25,7 +25,7 @@ function Accounts() {
                     <AccountBox type="SAVINGS *XXXX" available="1500.00" current="1500.00" />
 
                     <div className="text-center mt-4">
-                        <Button variant="success" size="lg" onClick={() => setShowModal(true)}>
+                        <Button size="lg" onClick={() => setShowModal(true)} style={{ backgroundColor: '#006649', color: "white"}}>
                             Create Account
                         </Button>
                     </div>
@@ -63,7 +63,7 @@ function Accounts() {
                         <Button variant="secondary" onClick={() => setShowModal(false)}>
                             Cancel
                         </Button>
-                        <Button variant="success" onClick={handleCreateAccount}>
+                        <Button onClick={handleCreateAccount} style={{ backgroundColor: '#006649', color: "white"}}>
                             Confirm
                         </Button>
                     </Modal.Footer>

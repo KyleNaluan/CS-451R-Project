@@ -5,6 +5,7 @@ import Registration from "./components/Registration";
 import Dashboard from "./components/Dashboard";
 import Accounts from "./components/Accounts";
 import IndividualAccount from "./components/IndividualAccount";
+import Transfer from "./components/Transfer";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/accounts" element={<Accounts />} />
         <Route path="/account/:accountId" element={<IndividualAccount />} />
+        <Route path="/transfer" element={<Transfer />} />
+
       </Routes>
     </div>
   );

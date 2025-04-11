@@ -46,7 +46,7 @@ function IndividualAccount() {
                         </div>
 
                         <div className="mt-4">
-                            <Button variant="success" size="lg" className="w-100" onClick={() => setShowModal(true)}>
+                            <Button size="lg" className="w-100" onClick={() => setShowModal(true)} style={{ backgroundColor: '#006649', color: "white"}}>
                                 Add Balance
                             </Button>
                         </div>
@@ -78,7 +78,7 @@ function IndividualAccount() {
                         <Button variant="secondary" onClick={() => setShowModal(false)}>
                             Cancel
                         </Button>
-                        <Button variant="success" onClick={handleAddBalance}>
+                        <Button onClick={handleAddBalance} style={{ backgroundColor: '#006649', color: "white"}}>
                             Confirm
                         </Button>
                     </Modal.Footer>
