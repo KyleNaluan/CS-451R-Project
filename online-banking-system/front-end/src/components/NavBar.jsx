@@ -32,7 +32,7 @@ function NavBar() {
             <Nav.Link onClick={() => navigate("/dashboard")}>Dashboard</Nav.Link>
             <Nav.Link onClick={() => navigate("/accounts")}>Accounts</Nav.Link>
             <Nav.Link>Budget Tracking</Nav.Link>
-            <Nav.Link>Transfer</Nav.Link>
+            <Nav.Link onClick={() => navigate("/transfer")}>Transfer</Nav.Link>
             <Nav.Link>Expenses</Nav.Link>
           </Nav>
           <Dropdown align="end">
