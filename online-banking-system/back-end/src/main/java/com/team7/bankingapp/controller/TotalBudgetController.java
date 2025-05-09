@@ -36,7 +36,6 @@ public class TotalBudgetController {
             TotalBudget saved = totalBudgetService.setOrUpdateTotalBudget(customer, amount);
             return ResponseEntity.ok(saved);
         } catch (IllegalArgumentException e) {
-            // Return the error message to the frontend
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("error", e.getMessage()));
         }

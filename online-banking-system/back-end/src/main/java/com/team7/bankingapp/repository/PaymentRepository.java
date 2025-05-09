@@ -16,24 +16,21 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     List<Payment> findByAccountAccountID(long accountId);
 
     @Query("SELECT p.category.categoryName, SUM(p.amount) " +
-           "FROM Payment p " +
-           "WHERE p.account.customer.customerID = :customerId " +
-           "AND p.transactionDate BETWEEN :startDate AND :endDate " +
-           "GROUP BY p.category.categoryName")
+            "FROM Payment p " +
+            "WHERE p.account.customer.customerID = :customerId " +
+            "AND p.transactionDate BETWEEN :startDate AND :endDate " +
+            "GROUP BY p.category.categoryName")
     List<Object[]> findCategorySpendingByCustomerAndDateRange(
-        @Param("customerId") long customerId,
-        @Param("startDate") LocalDate startDate,
-        @Param("endDate") LocalDate endDate
-    );
+            @Param("customerId") long customerId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate);
 
     @Query("SELECT SUM(p.amount) " +
-           "FROM Payment p " +
-           "WHERE p.account.customer.customerID = :customerId " +
-           "AND p.transactionDate BETWEEN :startDate AND :endDate")
+            "FROM Payment p " +
+            "WHERE p.account.customer.customerID = :customerId " +
+            "AND p.transactionDate BETWEEN :startDate AND :endDate")
     BigDecimal findTotalSpendingByCustomerAndDateRange(
-        @Param("customerId") long customerId,
-        @Param("startDate") LocalDate startDate,
-        @Param("endDate") LocalDate endDate
-    );
+            @Param("customerId") long customerId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate);
 }
-

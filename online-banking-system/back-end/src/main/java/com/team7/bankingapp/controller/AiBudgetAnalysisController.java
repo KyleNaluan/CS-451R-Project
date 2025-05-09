@@ -52,14 +52,12 @@ public class AiBudgetAnalysisController {
         int month = LocalDate.now().getMonthValue();
         int year = LocalDate.now().getYear();
 
-        // Fetch budgets
         Optional<TotalBudget> totalBudgetOpt = totalBudgetService.getCurrentMonthTotalBudget(customerId);
         BigDecimal totalLimit = totalBudgetOpt.map(TotalBudget::getMonthlyTotalLimit).orElse(BigDecimal.ZERO);
 
         List<CategoryBudget> categoryBudgets = categoryBudgetService.getCategoryBudgetsForCustomerMonth(customerId,
                 month, year);
 
-        // Fetch spending data
         List<Map<String, Object>> categorySpendingList = (List<Map<String, Object>>) paymentStatsController
                 .getCurrentMonthCategorySpending(session).getBody();
 
@@ -73,7 +71,6 @@ public class AiBudgetAnalysisController {
         BigDecimal totalSpent = categorySpendingMap.values().stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        // Write prompt
         StringBuilder prompt = new StringBuilder(
                 "Provide a financial analysis for the user's current month budget and spending.\n\n");
 
@@ -103,7 +100,6 @@ public class AiBudgetAnalysisController {
 
         prompt.append("\nProvide concise insights. Flag any overspending, or confirm if the user is within budget.");
 
-        // Send to Groq
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(groqApiKey);
         headers.setContentType(MediaType.APPLICATION_JSON);

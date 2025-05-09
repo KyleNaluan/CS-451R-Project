@@ -1,16 +1,12 @@
 package com.team7.bankingapp.service;
 
 import com.team7.bankingapp.model.Account;
-import com.team7.bankingapp.model.Deposit;
 import com.team7.bankingapp.repository.AccountRepository;
 import com.team7.bankingapp.repository.DepositRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Service
 public class AccountService {

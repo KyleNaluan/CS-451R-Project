@@ -16,13 +16,15 @@ public class CategoryBudgetId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CategoryBudgetId)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof CategoryBudgetId))
+            return false;
         CategoryBudgetId that = (CategoryBudgetId) o;
         return customer == that.customer &&
-               category == that.category &&
-               month == that.month &&
-               year == that.year;
+                category == that.category &&
+                month == that.month &&
+                year == that.year;
     }
 
     @Override

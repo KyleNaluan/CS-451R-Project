@@ -15,8 +15,10 @@ public class TotalBudgetId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TotalBudgetId)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof TotalBudgetId))
+            return false;
         TotalBudgetId that = (TotalBudgetId) o;
         return customer == that.customer && month == that.month && year == that.year;
     }

@@ -36,11 +36,9 @@ public class TotalBudgetService {
         int year = now.getYear();
         long customerId = customer.getCustomerID();
 
-        // Get a managed customer
         Customer managedCustomer = customerRepo.findById(customerId)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
 
-        // Calculate total of existing category budgets for the same month
         List<CategoryBudget> existingCategoryBudgets = categoryBudgetRepo
                 .findByCustomerCustomerIDAndMonthAndYear(customerId, month, year);
 

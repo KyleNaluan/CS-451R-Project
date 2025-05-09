@@ -69,7 +69,7 @@ function Transfer() {
         }
 
         try {
-            const res = await fetch("http://localhost:8080/api/accounts/transfer", {
+            const res = await fetch("http://localhost:8080/api/transfer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

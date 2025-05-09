@@ -7,4 +7,3 @@ import java.util.*;
 public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findByCustomerCustomerID(long customerID);
 }
-

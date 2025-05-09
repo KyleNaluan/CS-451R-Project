@@ -9,5 +9,6 @@ import java.util.*;
 @Repository
 public interface TransferRepository extends JpaRepository<Transfer, Integer> {
     List<Transfer> findBySenderAccountID(long senderId);
+
     List<Transfer> findByReceiverAccountID(long receiverId);
 }

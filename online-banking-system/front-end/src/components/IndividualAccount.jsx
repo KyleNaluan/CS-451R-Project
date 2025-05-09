@@ -238,7 +238,6 @@ function IndividualAccount() {
                         </Col>
                     </Row>
 
-                    {/* Add Balance Modal */}
                     <Modal show={showAddModal} onHide={() => setShowAddModal(false)} centered>
                         <Modal.Header closeButton><Modal.Title>Add Balance</Modal.Title></Modal.Header>
                         <Modal.Body>
@@ -278,7 +277,6 @@ function IndividualAccount() {
                         </Modal.Footer>
                     </Modal>
 
-                    {/* Withdraw Modal */}
                     <Modal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} centered>
                         <Modal.Header closeButton><Modal.Title>Withdraw Money</Modal.Title></Modal.Header>
                         <Modal.Body>

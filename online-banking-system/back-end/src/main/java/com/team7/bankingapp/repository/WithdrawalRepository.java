@@ -10,5 +10,6 @@ import java.util.*;
 @Repository
 public interface WithdrawalRepository extends JpaRepository<Withdrawal, Integer> {
     List<Withdrawal> findByAccount(Account account);
+
     List<Withdrawal> findByAccountAccountID(long accountId);
 }

@@ -54,7 +54,7 @@ public class AuthController {
 
             if (request.isRememberMe()) {
                 response.setHeader("Set-Cookie", "MY_SESSION_COOKIE=" + session.getId()
-                        + "; Max-Age=" + (60 * 60 * 24 * 7)
+                        + "; Max-Age=" + (60 * 60 * 24)
                         + "; Path=/; HttpOnly; Secure; SameSite=Lax");
             }
 
@@ -68,10 +68,10 @@ public class AuthController {
 
     @PostMapping("/logout")
     public ResponseEntity<String> logoutUser(HttpSession session, HttpServletResponse response) {
-        session.invalidate(); 
+        session.invalidate();
 
         Cookie cookie = new Cookie("MY_SESSION_COOKIE", null);
-        cookie.setMaxAge(0); 
+        cookie.setMaxAge(0);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setSecure(true);

@@ -17,4 +17,3 @@ public class Category {
     @Column(name = "categoryname", unique = true, nullable = false)
     private String categoryName;
 }
-

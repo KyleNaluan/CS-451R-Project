@@ -25,7 +25,6 @@ function Login() {
       [name]: type === "checkbox" ? checked : value,
     }));
 
-    // Simple validation for required fields
     const errors = { ...formErrors };
     if (type !== "checkbox" && !value.trim()) {
       errors[name] = `${name === "username" ? "Email or Username" : "Password"} is required.`;
@@ -54,7 +53,7 @@ function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
-        credentials: "include", // Important for sending/receiving cookies
+        credentials: "include",
       });
 
       const result = await response.json();
@@ -83,7 +82,6 @@ function Login() {
 
   return (
     <div className="d-flex vh-100">
-      {/* Form */}
       <div className="w-50 position-relative d-flex align-items-center justify-content-center">
         <div className="position-absolute top-0 start-0 p-4">
           <h4 className="fw-bold mb-0">Team7Banking</h4>
@@ -147,7 +145,6 @@ function Login() {
         </div>
       </div>
 
-      {/* Gradient */}
       <div
         className="w-50 d-none d-md-block"
         style={{

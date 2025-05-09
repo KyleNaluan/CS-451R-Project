@@ -18,26 +18,23 @@ public class TransferController {
     private TransferService transferService;
 
     @PostMapping
-    public ResponseEntity<?> transferFunds(@RequestParam long sourceAccount,
-                                           @RequestParam long receivingAccount,
-                                           @RequestParam BigDecimal amount,
-                                           @RequestParam(required = false) String comment) {
+    public ResponseEntity<?> transferFunds(@RequestBody Map<String, Object> payload) {
         try {
+            long sourceAccount = Long.parseLong(payload.get("sourceAccount").toString());
+            long receivingAccount = Long.parseLong(payload.get("receivingAccount").toString());
+            BigDecimal amount = new BigDecimal(payload.get("amount").toString());
+            String comment = payload.getOrDefault("comment", "").toString();
+
             Transfer result = transferService.executeTransfer(sourceAccount, receivingAccount, amount, comment);
             return ResponseEntity.ok(result);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(Map.of("message", e.getMessage()));
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         } catch (RuntimeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("message", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("message", "Unexpected error occurred."));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Unexpected error occurred."));
         }
     }
-}
 
+}

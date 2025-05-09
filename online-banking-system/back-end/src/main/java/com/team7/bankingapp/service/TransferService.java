@@ -36,13 +36,11 @@ public class TransferService {
             throw new IllegalArgumentException("Insufficient balance for transfer.");
         }
 
-        // Update balances
         source.setAccountBalance(source.getAccountBalance().subtract(amount));
         receiver.setAccountBalance(receiver.getAccountBalance().add(amount));
         accountRepo.save(source);
         accountRepo.save(receiver);
 
-        // Create and save Transfer record
         Transfer transfer = new Transfer();
         transfer.setAmount(amount);
         transfer.setTransactionDate(LocalDate.now());
@@ -53,5 +51,3 @@ public class TransferService {
         return transferRepo.save(transfer);
     }
 }
-
-

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface CategoryBudgetRepository extends JpaRepository<CategoryBudget, CategoryBudgetId> {
 
     Optional<CategoryBudget> findByCustomerCustomerIDAndCategoryCategoryIDAndMonthAndYear(
-        long customerID, int categoryID, int month, int year);
+            long customerID, int categoryID, int month, int year);
 
     List<CategoryBudget> findByCustomerCustomerIDAndMonthAndYear(long customerID, int month, int year);
 }

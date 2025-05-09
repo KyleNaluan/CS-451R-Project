@@ -38,8 +38,10 @@ public class CategoryBudgetController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in"));
         }
 
-        Category category = categoryRepo.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+        Category category = categoryRepo.findById(categoryId).orElse(null);
+        if (category == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Category not found"));
+        }
 
         try {
             CategoryBudget saved = categoryBudgetService.setOrUpdateCategoryBudget(customer, category, amount);
@@ -62,4 +64,5 @@ public class CategoryBudgetController {
 
         return ResponseEntity.ok(budgets);
     }
+
 }

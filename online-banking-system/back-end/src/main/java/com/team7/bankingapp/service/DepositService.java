@@ -6,7 +6,6 @@ import com.team7.bankingapp.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -40,4 +39,3 @@ public class DepositService {
         return depositRepo.save(deposit);
     }
 }
-

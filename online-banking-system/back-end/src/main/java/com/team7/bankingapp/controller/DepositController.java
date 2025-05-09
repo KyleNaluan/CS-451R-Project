@@ -5,7 +5,6 @@ import com.team7.bankingapp.service.DepositService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.*;
@@ -32,4 +31,3 @@ public class DepositController {
         }
     }
 }
-

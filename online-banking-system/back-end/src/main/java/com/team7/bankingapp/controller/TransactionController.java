@@ -1,21 +1,15 @@
 package com.team7.bankingapp.controller;
 
-import com.team7.bankingapp.model.Account;
 import com.team7.bankingapp.model.Deposit;
 import com.team7.bankingapp.model.Payment;
 import com.team7.bankingapp.model.Transfer;
 import com.team7.bankingapp.model.Withdrawal;
-import com.team7.bankingapp.model.Transaction;
-import com.team7.bankingapp.repository.AccountRepository;
 import com.team7.bankingapp.repository.DepositRepository;
 import com.team7.bankingapp.repository.PaymentRepository;
 import com.team7.bankingapp.repository.TransferRepository;
 import com.team7.bankingapp.repository.WithdrawalRepository;
-import com.team7.bankingapp.service.PaymentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,12 +26,6 @@ public class TransactionController {
     private PaymentRepository paymentRepo;
     @Autowired
     private TransferRepository transferRepo;
-
-    @Autowired
-    private AccountRepository accountRepo;
-
-    @Autowired
-    private PaymentService paymentService;
 
     @GetMapping("/account/{accountId}")
     public List<Map<String, Object>> getAllTransactionsForAccount(@PathVariable long accountId) {
@@ -103,16 +91,6 @@ public class TransactionController {
                     return dateB.compareTo(dateA);
                 })
                 .collect(Collectors.toList());
-    }
-
-    @DeleteMapping("/payment/{paymentId}")
-    public ResponseEntity<?> deletePayment(@PathVariable int paymentId) {
-        try {
-            paymentService.deletePayment(paymentId);
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
     }
 
 }
