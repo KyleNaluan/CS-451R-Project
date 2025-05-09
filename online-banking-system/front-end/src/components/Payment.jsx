@@ -131,12 +131,12 @@ function Transactions() {
             </ToastContainer>
 
             <Container className="mt-4">
-                <h3 className="fw-bold mb-3">New Transaction</h3>
+                <h3 className="fw-bold mb-3">New Payment</h3>
                 <p className="text-muted">Please fill in the details for your payment or expense</p>
 
                 <Card className="p-4 shadow-sm">
                     <Form onSubmit={handleSubmit}>
-                        <h5 className="mb-3 fw-semibold">Transaction Details</h5>
+                        <h5 className="mb-3 fw-semibold">Payment Details</h5>
 
                         <Form.Group className="mb-3" controlId="sourceAccount">
                             <Form.Label>Select Source Bank</Form.Label>
@@ -153,7 +153,7 @@ function Transactions() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="transactionNote">
-                            <Form.Label>Transaction Note (Optional)</Form.Label>
+                            <Form.Label>Payment Note (Optional)</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={3}
@@ -165,7 +165,7 @@ function Transactions() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="transactionCategory">
-                            <Form.Label>Transaction Category</Form.Label>
+                            <Form.Label>Payment Category</Form.Label>
                             <Form.Select
                                 name="transactionCategory"
                                 onChange={handleChange}
@@ -201,7 +201,7 @@ function Transactions() {
                             className="w-100"
                             style={{ backgroundColor: "#006649", color: "white" }}
                         >
-                            Submit Transaction
+                            Submit Payment
                         </Button>
                     </Form>
                 </Card>

@@ -35,4 +35,14 @@ public class PaymentController {
                     .body(Map.of("message", "Unexpected error occurred."));
         }
     }
+
+    @DeleteMapping("/{paymentId}")
+    public ResponseEntity<?> deletePayment(@PathVariable int paymentId) {
+        try {
+            paymentService.deletePayment(paymentId);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        }
+    }
 }

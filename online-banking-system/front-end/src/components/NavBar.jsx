@@ -3,29 +3,44 @@ import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 
-const ProfileToggle = React.forwardRef(({ onClick }, ref) => (
-  <div
-    ref={ref}
-    onClick={e => {
-      e.preventDefault();
-      onClick(e);
-    }}
-    style={{
-      width: "35px",
-      height: "35px",
-      borderRadius: "50%",
-      backgroundColor: "#ccc",
-      cursor: "pointer",
-    }}
-  />
-));
-
 function NavBar() {
   const navigate = useNavigate();
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+
+  const initials = user
+    ? `${user.fName?.[0] || ''}${user.lName?.[0] || ''}`.toUpperCase()
+    : "";
+
+  const ProfileToggle = React.forwardRef(({ onClick }, ref) => (
+    <div
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      style={{
+        width: "35px",
+        height: "35px",
+        borderRadius: "50%",
+        backgroundColor: "#8a8888",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "white",
+        fontWeight: "bold"
+      }}
+    >
+      {initials}
+    </div>
+  ));
 
   return (
-    <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#006649", padding: "0.5rem 1rem", color: 'white' }}>
+    <Navbar
+      variant="dark"
+      expand="lg"
+      style={{ backgroundColor: "#006649", padding: "0.5rem 1rem", color: "white" }}
+    >
       <Container fluid>
         <Navbar.Brand href="#" className="fw-bold">Team7Banking</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
@@ -35,12 +50,12 @@ function NavBar() {
             <Nav.Link onClick={() => navigate("/accounts")}>Accounts</Nav.Link>
             <Nav.Link onClick={() => navigate("/budgetoverview")}>Budget Tracking</Nav.Link>
             <Nav.Link onClick={() => navigate("/transfer")}>Transfer</Nav.Link>
-            <Nav.Link onClick={() => navigate("/transactions")}>Add Transaction</Nav.Link>
+            <Nav.Link onClick={() => navigate("/payment")}>Add Payment</Nav.Link>
           </Nav>
           <Dropdown align="end">
             <Dropdown.Toggle as={ProfileToggle} />
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => navigate("/profile")}>Settings</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate("/profile")}>Profile</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item
                 onClick={async () => {
@@ -49,7 +64,6 @@ function NavBar() {
                       method: "POST",
                       credentials: "include"
                     });
-
                     localStorage.clear();
                     setUser(null);
                     navigate("/login");
@@ -66,6 +80,6 @@ function NavBar() {
       </Container>
     </Navbar>
   );
-};
+}
 
 export default NavBar;

@@ -59,7 +59,7 @@ public class AiBudgetAnalysisController {
         List<CategoryBudget> categoryBudgets = categoryBudgetService.getCategoryBudgetsForCustomerMonth(customerId,
                 month, year);
 
-        // Fetch actual spending data from PaymentStatsController
+        // Fetch spending data
         List<Map<String, Object>> categorySpendingList = (List<Map<String, Object>>) paymentStatsController
                 .getCurrentMonthCategorySpending(session).getBody();
 
@@ -73,7 +73,7 @@ public class AiBudgetAnalysisController {
         BigDecimal totalSpent = categorySpendingMap.values().stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        // Build the prompt
+        // Write prompt
         StringBuilder prompt = new StringBuilder(
                 "Provide a financial analysis for the user's current month budget and spending.\n\n");
 

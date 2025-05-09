@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Accounts from "./components/Accounts";
 import IndividualAccount from "./components/IndividualAccount";
 import Transfer from "./components/Transfer";
-import Transactions from "./components/Transactions";
+import Payment from "./components/Payment";
 import BudgetOverview from "./components/BudgetOverview";
 import Profile from "./components/Profile";
 import EmailChange from "./components/EmailChange";
@@ -52,7 +52,7 @@ function App() {
         <Route path="/accounts" element={<ProtectedRoute><Accounts /></ProtectedRoute>} />
         <Route path="/account/:accountId" element={<ProtectedRoute><IndividualAccount /></ProtectedRoute>} />
         <Route path="/transfer" element={<ProtectedRoute><Transfer /></ProtectedRoute>} />
-        <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
+        <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/budgetoverview" element={<ProtectedRoute><BudgetOverview /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Routes>
