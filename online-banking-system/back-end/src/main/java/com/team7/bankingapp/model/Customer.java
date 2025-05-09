@@ -1,8 +1,8 @@
 package com.team7.bankingapp.model;
 
-import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity

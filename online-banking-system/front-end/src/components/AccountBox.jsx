@@ -17,11 +17,15 @@ function AccountBox({ type, available, current, accountId }) {
       <p className="fw-semibold fs-5 mb-3">{type}</p>
       <div className="d-flex justify-content-between mb-2">
         <span className="text-muted">Available</span>
-        <span className="fw-bold">${available}</span>
+        <span className="fw-bold">
+          ${Number(available).toFixed(2)}
+        </span>
       </div>
       <div className="d-flex justify-content-between">
         <span className="text-muted">Current</span>
-        <span className="fw-bold">${current}</span>
+        <span className="fw-bold">
+          ${Number(current).toFixed(2)}
+        </span>
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
+import { SessionToastProvider } from "./context/SessionToastContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <SessionToastProvider>
+          <App />
+        </SessionToastProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

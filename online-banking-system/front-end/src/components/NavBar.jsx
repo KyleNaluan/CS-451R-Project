@@ -1,4 +1,5 @@
 import React from "react";
+import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 
@@ -21,6 +22,7 @@ const ProfileToggle = React.forwardRef(({ onClick }, ref) => (
 
 function NavBar() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   return (
     <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#006649", padding: "0.5rem 1rem", color: 'white' }}>
@@ -31,16 +33,33 @@ function NavBar() {
           <Nav className="me-auto">
             <Nav.Link onClick={() => navigate("/dashboard")}>Dashboard</Nav.Link>
             <Nav.Link onClick={() => navigate("/accounts")}>Accounts</Nav.Link>
-            <Nav.Link>Budget Tracking</Nav.Link>
+            <Nav.Link onClick={() => navigate("/budgetoverview")}>Budget Tracking</Nav.Link>
             <Nav.Link onClick={() => navigate("/transfer")}>Transfer</Nav.Link>
-            <Nav.Link>Expenses</Nav.Link>
+            <Nav.Link onClick={() => navigate("/transactions")}>Add Transaction</Nav.Link>
           </Nav>
           <Dropdown align="end">
             <Dropdown.Toggle as={ProfileToggle} />
             <Dropdown.Menu>
-              <Dropdown.Item>Settings</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate("/profile")}>Settings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={() => navigate("/login")}>Logout</Dropdown.Item>
+              <Dropdown.Item
+                onClick={async () => {
+                  try {
+                    await fetch("http://localhost:8080/auth/logout", {
+                      method: "POST",
+                      credentials: "include"
+                    });
+
+                    localStorage.clear();
+                    setUser(null);
+                    navigate("/login");
+                  } catch (err) {
+                    console.error("Logout failed:", err);
+                  }
+                }}
+              >
+                Logout
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Navbar.Collapse>

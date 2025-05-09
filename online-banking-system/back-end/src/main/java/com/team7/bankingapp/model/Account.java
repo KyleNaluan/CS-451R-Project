@@ -1,6 +1,7 @@
 package com.team7.bankingapp.model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import lombok.*;
 
 @Entity
@@ -11,8 +12,26 @@ import lombok.*;
 @AllArgsConstructor
 public class Account {
     @Id
-    private Long accountID;
+    private long accountID;
 
-    @Column(name = "accountbalance")
-    private int accountBalance;
+    @Column(name = "accountbalance", nullable = false)
+    private BigDecimal accountBalance = BigDecimal.ZERO;
+
+    @Column(name = "accounttype", nullable = false)
+    private String accountType;
+
+    @ManyToOne
+    @JoinColumn(name = "customerid", nullable = false)
+    private Customer customer;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountID=" + accountID +
+                ", accountBalance=" + accountBalance +
+                ", accountType='" + accountType + '\'' +
+                ", customer=" + (customer != null ? customer.getCustomerID() : "null") +
+                '}';
+    }
+
 }
