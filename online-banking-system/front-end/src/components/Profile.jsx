@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Button, Row, Col, Form, Modal, Container, Toast, ToastContainer } from "react-bootstrap";
 import NavBar from "./NavBar";
+import { useUser } from "../context/UserContext";
 
 function Profile() {
     const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +15,7 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
     const [originalProfileData, setOriginalProfileData] = useState({});
     const [isSending, setIsSending] = useState(false);
+    const { user, setUser } = useUser();
 
     const alphanumericRegex = /^[a-zA-Z0-9]+$/;
     const nameRegex = /^[a-zA-Z]+$/;
@@ -99,6 +101,13 @@ function Profile() {
                 const updatedData = await meRes.json();
                 setProfileData(updatedData);
                 setOriginalProfileData(updatedData);
+                setUser({
+                    ...user,
+                    fName: updatedData.fName,
+                    lName: updatedData.lName,
+                    username: updatedData.username,
+                    email: updatedData.email
+                });
                 setFormErrors({});
                 setIsEditing(false);
                 setBackendSuccess(message);
